@@ -24,7 +24,7 @@ pipeline {
             }
         }
         
-         stage('STAGE1') {
+         stage('STAGE2') {
             steps {
                echo "DOCKER_USER: ${env.DOCKER_USER}"
                echo "AWS_ACCESS_KEY: ${env.AWS_ACCESS_KEY}"
