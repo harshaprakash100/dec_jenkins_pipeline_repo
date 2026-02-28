@@ -6,7 +6,7 @@ pipeline {
             steps {
                echo "This is the stage 1"
                sh '''
-                    sleep 5
+                    sleep 10
                     echo "This is a linux command"
                 '''
             }
@@ -16,7 +16,7 @@ pipeline {
                 echo "Building Java code"
                 sh '''
                     #!/bin/bash
-                    sleep 5
+                    sleep 10
                 '''
             }
         }
