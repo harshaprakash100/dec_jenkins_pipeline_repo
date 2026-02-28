@@ -3,10 +3,9 @@ pipeline {
 
     stages {
         stage('STAGE1') {
-            
             agent { label 'slave1' }
-
             steps {
+                
                echo "This is the stage 1"
                sh '''
                     sleep 10

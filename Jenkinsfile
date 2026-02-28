@@ -1,30 +1,23 @@
 pipeline {
     agent none
 
+    parameters {
+        string(name: 'NAME', default: '', description: 'Please tell me you name?')
+        booleanParam(name: 'SKIP_TEST', description: 'Want to skip test runs to direct deploy')
+        choice(name: 'BRANCH', choices: ['master','stagging','prod'], description: '')
+    }
+
     stages {
         stage('STAGE1') {
             
             agent { label 'slave1' }
 
             steps {
-               echo "This is the stage 1"
-               sh '''
-                    sleep 10
-                    echo "This is a linux command"
-                '''
+               echo "NAME: ${params.NAME}"
+               echo "SKIP_TEST: ${params.SKIP_TEST}"
+               echo "BRANCH TO DEPLOY: ${params.BRANCH}"
             }
         }
-        stage('Build') {
-
-            agent { label 'slave2' }
-
-            steps {
-                echo "Building Java code"
-                sh '''
-                    #!/bin/bash
-                    sleep 10
-                '''
-            }
-        }
+        
     }
 }
