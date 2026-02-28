@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('STAGE1') {
             steps {
-               echo "DOCKER_USER: ${DOCKER_USER}"
-               echo "AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}"
+               echo "DOCKER_USER: ${env.DOCKER_USER}"
+               echo "AWS_ACCESS_KEY: ${env.AWS_ACCESS_KEY}"
 
                sh '''
                    env
