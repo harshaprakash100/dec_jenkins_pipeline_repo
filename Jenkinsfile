@@ -25,7 +25,9 @@ pipeline {
 
         stage('STAGE1 When branch main') {
             when {
-                branch 'main'
+                expression {
+                    return env.GIT_BRANCH == '*/main'
+                }
             }
             steps {
                 echo "This is stage1 running"
