@@ -10,6 +10,19 @@ pipeline {
     }
 
     stages {
+        stage('CEHCKOUT_REPOA') {
+            steps {
+                checkout ([ $class: 'GitSCM',
+                            branches: [[name: '*/main']], 
+                            extensions: [], 
+                            userRemoteConfigs: [[
+                                credentialsId: 'jaintpharsha', 
+                                url: 'https://github.com/jaintpharsha/mern_3tire.git'
+                            ]]
+                        ])
+            }
+        }
+
         stage('STAGE1 When branch main') {
             when {
                 branch 'main'
@@ -17,19 +30,24 @@ pipeline {
             steps {
                 echo "This is stage1 running"
                 sh ''' 
+                    pwd
+                    ls -lrt
                     sleep 5
-                    exit 1
                 '''
             }
         }
-        
+
         stage('when environment') {
             when {
                 environment name: 'CURRENT_ENV', value: 'prod'
             }
             steps {
                 echo "This is FINAL running"
-                sh 'sleep 5'
+                sh '''
+                    pwd
+                    ls -lrt
+                    sleep 5
+                '''
             }
         }
 
