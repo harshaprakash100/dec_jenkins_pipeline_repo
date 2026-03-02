@@ -6,7 +6,7 @@ pipeline {
     }
     
     environment {
-        CURRENT_ENV = 'prod'
+        CURRENT_ENV = 'prodaa'
     }
 
     stages {
