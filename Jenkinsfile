@@ -1,59 +1,45 @@
 pipeline {
     agent any
 
+    parameters {
+        booleanParam(name: 'DEPLOY', description: 'Want to deploy to Production')
+    }
+    
+    environment {
+        CURRENT_ENV = 'prod'
+    }
+
     stages {
-        stage('STAGE1_a') {
+        stage('STAGE1 When branch main') {
+            when {
+                branch 'main'
+            }
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    echo "This is stage1 running"
-                    sh ''' 
-                        sleep 5
-                        exit 1
-                    '''
-                }
+                echo "This is stage1 running"
+                sh ''' 
+                    sleep 5
+                    exit 1
+                '''
             }
         }
         
-        stage('STAGE1_b') {
+        stage('when environment') {
+            when {
+                environment name: 'CURRENT_ENV', value: 'prod'
+            }
             steps {
-                script { 
-                    try {
-                        sh ''' 
-                            sleep 5
-                            exit 1
-                        '''
-                    } 
-                    catch (err) {
-                        echo "Error caught: ${err}"
-                        currentBuild.result = 'SUCCESS'
-                    }
-                }
+                echo "This is FINAL running"
+                sh 'sleep 5'
             }
         }
 
-
-        stage('PARALLEL TESTING') {
-            parallel {
-                stage('WINDOWS TESTING') {
-                    steps {
-                        echo "This is WINDOWS testing running"
-                        sh 'sleep 5'
-                    }
-                }
-
-                stage('MACOS TESTING') {
-                    steps {
-                        echo "This is MACOS testing running"
-                        sh 'sleep 5'
-                    }
-                }
+        stage('when parameter') {
+            when {
+                expression { params.DEPLOY == true }
             }
-        }
-
-        stage('FINAL') {
             steps {
-               echo "This is FINAL running"
-               sh 'sleep 5'
+                echo "This is FINAL running"
+                sh 'sleep 5'
             }
         }
     }
