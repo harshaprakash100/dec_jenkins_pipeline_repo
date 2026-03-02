@@ -20,12 +20,11 @@ pipeline {
                                 url: 'https://github.com/jaintpharsha/mern_3tire.git'
                             ]]
                         ])
-                steps {
-                    sh '''
-                        echo GIT_BRANCH: $GIT_BRANCH
-                        echo BRANCH_NAME: $BRANCH_NAME
-                    '''
-                }
+               
+                sh '''
+                    echo GIT_BRANCH: $GIT_BRANCH
+                    echo BRANCH_NAME: $BRANCH_NAME
+                '''
             }
         }
 
