@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
 
+    parameters {
+        booleanParam(name: 'DEPLOY', description: 'Want to deploy to Production')
+    }
+    
     environment {
-        CURRENT_ENV = 'prodaa'
+        CURRENT_ENV = 'prod'
     }
 
     stages {
@@ -44,6 +44,28 @@ pipeline {
             }
         }
 
-   
+        stage('when environment') {
+            when {
+                environment name: 'CURRENT_ENV', value: 'prod'
+            }
+            steps {
+                echo "This is FINAL running"
+                sh '''
+                    pwd
+                    ls -lrt
+                    sleep 5
+                '''
+            }
+        }
+
+        stage('when parameter') {
+            when {
+                expression { params.DEPLOY == true }
+            }
+            steps {
+                echo "This is FINAL running"
+                sh 'sleep 5'
+            }
+        }
     }
 }
