@@ -1,5 +1,5 @@
 pipeline {
-    agent { label slave1 && slave2 }
+    agent { label "${slave1 && slave2}" }
     // agent { label 'slave1 || slave2' }
     // agent { label '!master' } // Run on nodes wihtout label master
     
