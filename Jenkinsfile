@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
 
     environment {
         CURRENT_ENV = 'prodaa'
