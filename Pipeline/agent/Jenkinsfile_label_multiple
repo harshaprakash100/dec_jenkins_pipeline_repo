@@ -1,7 +1,7 @@
 pipeline {
-    // agent { label 'slave1 && slave2' }
+    agent { label 'slave1 && slave2' }
     // agent { label 'slave1 || slave2' }
-    agent { label '!master' } // Run on nodes wihtout label master
+    // agent { label '!master' } // Run on nodes wihtout label master
     
     stages {
         stage('STAGE1') {
