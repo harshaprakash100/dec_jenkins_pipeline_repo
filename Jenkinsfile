@@ -7,11 +7,6 @@ pipeline {
 
     options {
         ansiColor('xterm')
-        disableConcurrentBuilds(abortPrevious: true)
-        buildDiscarder(logRotator(numToKeepStr: '2'))
-        disableResume()
-        timeout(time: 2, unit: 'MINUTES')
-        // retry(2)
     }
 
     environment {
