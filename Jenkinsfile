@@ -38,12 +38,13 @@ pipeline {
                     return env.GIT_BRANCH == 'origin/main'
                 }
             }
+
             steps {
                 echo "This is stage1 running"
                 sh ''' 
                     pwd
                     ls -lrt
-                    echo "\e[31mHarsha \e[92mJain"
+                    echo "\033[31mHarsha \033[92mJain"
                     sleep 5
                 '''
             }
