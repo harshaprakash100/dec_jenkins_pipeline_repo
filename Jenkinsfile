@@ -8,7 +8,7 @@ pipeline {
     options {
         ansiColor('xterm')
         disableConcurrentBuilds(abortPrevious: true)
-        buildDiscarder(logRotator(numToKeeoStr: '2'))
+        buildDiscarder(logRotator(numToKeepStr: '2'))
         disableResume()
         timeout(time: 2, unit: 'MINUTES')
         // retry(2)
