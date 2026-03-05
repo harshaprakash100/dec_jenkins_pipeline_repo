@@ -44,7 +44,7 @@ pipeline {
                 sh ''' 
                     pwd
                     ls -lrt
-                    echo "\033[31mHarsha \033[92mJain"
+                    echo "\033[31mHarsha \033[92mJain \033[30m"
                     sleep 5
                 '''
             }
