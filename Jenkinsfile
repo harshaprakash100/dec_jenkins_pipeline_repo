@@ -5,6 +5,15 @@ pipeline {
         cron('H/15 * * * *')
     }
 
+    options {
+        ansiColor('xterm')
+        disableConcurrentBuilds(abortPrevious: true)
+        buildDiscarder(logRotator(numToKeeoStr: '2'))
+        disableResume()
+        timeout(time: 2, unit: 'MINUTES')
+        // retry(2)
+    }
+
     environment {
         CURRENT_ENV = 'prodaa'
     }
